@@ -552,6 +552,13 @@ You can get started by cloning this repository. We use
 We rely on some recent features of setuptools, so make sure to upgrade to a recent version with
 `pip install setuptools --upgrade`.  Then from your local copy of the repository you can run `python setup.py develop` to get started.
 
+## Installations
+Install pytest, pytest-cov
+
+## Using Docker Container to Run Tests
+Build container: `docker build --tag curia-econml .`
+Run tests in container: `docker run curia-econml`
+
 ## Running the tests
 
 This project uses [pytest](https://docs.pytest.org/) for testing.  To run tests locally after installing the package, 

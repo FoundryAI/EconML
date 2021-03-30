@@ -507,10 +507,10 @@ def check_inputs(Y, T, X, W=None, multi_output_T=True, multi_output_Y=True):
         Converted and validated W.
 
     """
-    X, T = check_X_y(X, T, multi_output=multi_output_T, y_numeric=True)
-    _, Y = check_X_y(X, Y, multi_output=multi_output_Y, y_numeric=True)
+    X, T = check_X_y(X, T, multi_output=multi_output_T, y_numeric=True, force_all_finite="allow-nan")
+    _, Y = check_X_y(X, Y, multi_output=multi_output_Y, y_numeric=True, force_all_finite="allow-nan")
     if W is not None:
-        W, _ = check_X_y(W, Y, multi_output=multi_output_Y, y_numeric=True)
+        W, _ = check_X_y(W, Y, multi_output=multi_output_Y, y_numeric=True, force_all_finite="allow-nan")
     return Y, T, X, W
 
 
@@ -972,7 +972,7 @@ class WeightedModelWrapper:
         return self.model_instance.predict(X)
 
     def _weighted_inputs(self, X, y, sample_weight):
-        X, y = check_X_y(X, y, y_numeric=True, multi_output=True)
+        X, y = check_X_y(X, y, y_numeric=True, multi_output=True, force_all_finite="allow-nan")
         normalized_weights = sample_weight * X.shape[0] / np.sum(sample_weight)
         sqrt_weights = np.sqrt(normalized_weights)
         weighted_X = sqrt_weights.reshape(-1, 1) * X
