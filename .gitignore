@@ -116,3 +116,6 @@ double_ml/proto/*.jpg
 
 # sphinx autosummaries 
 doc/_autosummary/
+
+# pypi publishing
+.pypirc
